@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: microbot
 spec:
-  replicas: 7 # จำนวน replica สำหรับ prod
+  replicas: 5 # จำนวน replica สำหรับ prod
 #  template:
 #    spec:
 #      containers:
