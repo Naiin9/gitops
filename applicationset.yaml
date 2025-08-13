@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: microbot
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        #cluster: https://dev-cluster.kubernetes.default.svc
+        cluster: "in-cluster"
+      - env: uat
+        #cluster: https://uat-cluster.kubernetes.default.svc
+        cluster: "argolab2"
+      - env: prod
+        #cluster: https://prod-cluster.kubernetes.default.svc
+        cluster: "argolab3"
+  template:
+    metadata:
+      name: 'microbot-{{env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/naiin9/gitops.git
+        targetRevision: main
+        # Path จะชี้ไปยัง Overlay ของแต่ละ Environment
+        path: overlays/{{env}} 
+      destination:
+        #server: '{{cluster}}'
+        name: '{{cluster}}'
+        namespace: 'microbot-{{env}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true

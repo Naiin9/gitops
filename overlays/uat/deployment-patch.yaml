@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microbot
+spec:
+  replicas: 3 # จำนวน replica สำหรับ uat
+#  template:
+#    spec:
+#      containers:
+#      - name: microbot
+#        image: naiin9/microbot:v1 # Image tag สำหรับ uat
