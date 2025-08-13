@@ -18,7 +18,7 @@ spec:
         cluster: "argolab3"
       - env: test
         #cluster: https://test-cluster.kubernetes.default.svc
-        cluster: "argolab"
+        cluster: "in-cluster"
   template:
     metadata:
       name: 'microbot-{{env}}'
