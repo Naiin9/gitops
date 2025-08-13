@@ -16,7 +16,7 @@ spec:
       - env: prod
         #cluster: https://prod-cluster.kubernetes.default.svc
         cluster: "argolab3"
-      - env: test
+      - env: staging
         #cluster: https://test-cluster.kubernetes.default.svc
         cluster: "in-cluster"
   template:
