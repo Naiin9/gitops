@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: microbot
+  name: microbot-appset
   namespace: argocd
 spec:
   generators:
@@ -20,7 +20,7 @@ spec:
     metadata:
       name: 'microbot-{{env}}'
     spec:
-      project: default
+      project: microbot
       source:
         repoURL: https://github.com/naiin9/gitops.git
         targetRevision: main
