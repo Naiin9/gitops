@@ -9,3 +9,6 @@ patches:
   target:
     kind: Deployment
     name: microbot
+  target:
+    kind: Service
+    name: microbot-svc
