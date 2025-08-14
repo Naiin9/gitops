@@ -9,14 +9,3 @@ spec:
 #      containers:
 #      - name: microbot
 #        image: naiin9/microbot:v1 # Image tag สำหรับ Dev
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: microbot-svc
-spec:
-  type: NodePort
-  selector:
-    app: microbot
-  ports:
-  - nodePort: 31213
