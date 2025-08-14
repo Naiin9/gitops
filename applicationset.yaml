@@ -16,9 +16,8 @@ spec:
       - env: prod
         #cluster: https://prod-cluster.kubernetes.default.svc
         cluster: "argolab3"
-      - env: staging
-        #cluster: https://test-cluster.kubernetes.default.svc
-        cluster: "in-cluster"
+  syncPolicy:
+    applicationsSync: sync
   template:
     metadata:
       name: 'microbot-{{env}}'
@@ -34,7 +33,6 @@ spec:
         name: '{{cluster}}'
         namespace: 'microbot-{{env}}'
       syncPolicy:
-        applicationsSync: sync
         automated:
           prune: true
           selfHeal: true
