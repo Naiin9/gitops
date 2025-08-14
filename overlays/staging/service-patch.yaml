@@ -7,4 +7,6 @@ spec:
   selector:
     app: microbot
   ports:
-  - nodePort: 31213
+  - port: 8086
+    targetPort: 80
+    nodePort: 31213
