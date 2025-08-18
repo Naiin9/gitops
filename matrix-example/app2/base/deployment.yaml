@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: microbot
+  name: microbot2
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: microbot
+      app: microbot2
   template:
     metadata:
       labels:
-        app: microbot
+        app: microbot2
     spec:
       containers:
       - name: microbot

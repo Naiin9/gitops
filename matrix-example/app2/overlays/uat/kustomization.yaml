@@ -8,4 +8,4 @@ patches:
 - path: deployment-patch.yaml
   target:
     kind: Deployment
-    name: microbot
+    name: microbot2

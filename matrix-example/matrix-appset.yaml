@@ -20,7 +20,7 @@ spec:
           - path: matrix-example/*
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: 'mdf-{{env}}-{{path.basename}}'
     spec:
       project: mdf
       source:
