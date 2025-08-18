@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: matrix-appset
+  namespace: argocd
+spec:
+  generators:
+  - matrix:
+      generators:
+      - list:
+          elements:
+          - env: dev
+            cluster: "in-cluster"
+          - env: uat
+            cluster: "argolab2"
+      - git:
+          repoURL: https://github.com/naiin9/gitops.git
+          revision: main
+          directories:
+          - path: matrix-example/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: mdf
+      source:
+        repoURL: https://github.com/naiin9/gitops.git
+        targetRevision: main
+        # Path จะชี้ไปยัง Overlay ของแต่ละ Environment
+        path: '{{path}}/overlays/{{env}}'
+      destination:
+        #server: '{{cluster}}'
+        name: '{{cluster}}'
+        namespace: 'mdf-{{env}}'
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
+        syncOptions:
+        - CreateNamespace=true
